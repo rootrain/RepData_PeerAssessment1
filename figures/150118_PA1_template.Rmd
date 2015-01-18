@@ -1,0 +1,122 @@
+Reproducible research course project 1(submit on 150118)
+========================================================
+
+##1, Loading and preprocessing the data
+First, we load the data(activity.csv) into act.
+Next, we remove the row which contain NA.
+```{r}
+#1-1,load the file
+setwd("C:/Users/namazu/Desktop/150112_reproducibleResearch/repdata-data-activity")
+
+act<-read.csv("activity.csv")
+
+#1-2 preprocessing the data by removing data which contain NA.
+act_noNA<-act
+act_noNA<-act[complete.cases(act),]
+levelList_noNA<-levels(act_noNA$date)
+
+```
+
+##2, What is mean total number of steps taken per day?
+#2-1. Make a histogram of the total number of steps taken each day
+```{r}
+steps_eachday_noNA_sum<-vector()
+for (j in 1:length(levelList_noNA)){
+  part<-subset(act_noNA,act_noNA$date==levelList_noNA[j])
+  partSteps<-part$steps
+  partSteps_df<-as.data.frame(partSteps)
+  steps_eachday_noNA_sum[j]<-apply(partSteps_df,2,sum)
+}
+
+
+barplot(steps_eachday_noNA_sum,names.arg=levelList_noNA,xlab="date",ylab="sum of steps in each day",main="sum of steps in each day")
+```
+
+#2-2. Calculate and report the mean and median total number of steps taken per day
+```{r}
+
+steps_eachday_noNA_mean<-vector()
+steps_eachday_noNA_median<-vector()
+for (j in 1:length(levelList_noNA)){
+  part<-subset(act_noNA,act_noNA$date==levelList_noNA[j])
+  partSteps<-part$steps
+  partSteps_df<-as.data.frame(partSteps)
+  steps_eachday_noNA_mean[j]<-apply(partSteps_df,2,mean)
+  steps_eachday_noNA_median[j]<-apply(partSteps_df,2,median)
+}
+
+
+#integrate the results into one dataframe
+mean_median_df<-cbind(steps_eachday_noNA_mean,steps_eachday_noNA_median)
+colnames(mean_median_df)<-c("mean of steps in each day","median of steps in each day")
+
+mean_median_df
+```
+
+
+##3 What is the average daily activity pattern?
+#3-1. Make a time series plot (i.e. type = "l" ) of the 5minute interval (xaxis) and the average number of steps taken, averaged across all days (yaxis)
+
+```{r}
+#make interval data
+intervals<-vector()
+for ( k in 0:471){
+  intervals[k+1]<-5*k
+}
+
+#calculate mean of steps in each interval value.
+steps_eachInterval_mean<-vector()
+for ( k in 0:471){
+  partInt<-subset(act_noNA,act_noNA$interval==k*5)
+  partIntSteps<-as.data.frame(partInt$steps)
+  partIntSteps<-as.data.frame(partIntSteps[complete.cases(partIntSteps),])
+  partIntSteps
+  steps_eachInterval_mean[k+1]<-apply(partIntSteps,2,mean)
+}
+
+#making the dataframe to report the mean of steps in each interval
+steps_eachInterval_mean<-cbind(intervals,steps_eachInterval_mean)
+colnames(steps_eachInterval_mean)<-c("intervals","mean of steps in each interval")
+steps_eachInterval_mean
+
+#make time series plot
+plot(steps_eachInterval_mean[,2] ~ steps_eachInterval_mean[,1],type="l",xlab="5minute interval",ylab="averaged steps in each interval",main="time seriese plot of \n averaged steps in each interval") 
+
+```
+
+#3-2  Which 5minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+
+my answer: According to the calculation below, when the interval is 835, the mean of the steps in each interval is maximized.
+
+```{r}
+#get the value of max of the mean of the steps in each interval
+maxSteps<-max(steps_eachInterval_mean[,2],na.rm=TRUE)
+#get the value of intervals which has maxSteps
+maxdata<-subset(steps_eachInterval_mean,steps_eachInterval_mean[,2]==maxSteps)
+maxdata 
+
+```
+
+
+##4 Imputing missing values
+#4-1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NA)
+
+my answer :
+According to the calculation below, the number of NAs in this dataset was 2304.
+```{r}
+NAnum<-sum(is.na(act))
+NAnum 
+
+```
+
+#4-2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5minute interval, etc.
+
+my answer:
+We fill NAs in this dataset with mean steps in each interval.
+
+#4-3.Create a new dataset that is equal to the original dataset but with the missing data filled in.
+
+
+
+
+

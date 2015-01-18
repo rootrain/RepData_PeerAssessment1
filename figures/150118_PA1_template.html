@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Reproducible research course project 1(submit on 150118)</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>Reproducible research course project 1(submit on 150118)</h1>
+
+<p>##1, Loading and preprocessing the data
+First, we load the data(activity.csv) into act.
+Next, we remove the row which contain NA.</p>
+
+<pre><code class="r"># 1-1,load the file
+setwd(&quot;C:/Users/namazu/Desktop/150112_reproducibleResearch/repdata-data-activity&quot;)
+
+act &lt;- read.csv(&quot;activity.csv&quot;)
+
+# 1-2 preprocessing the data by removing data which contain NA.
+act_noNA &lt;- act
+act_noNA &lt;- act[complete.cases(act), ]
+levelList_noNA &lt;- levels(act_noNA$date)
+</code></pre>
+
+<p>##2, What is mean total number of steps taken per day?
+#2-1. Make a histogram of the total number of steps taken each day</p>
+
+<pre><code class="r">steps_eachday_noNA_sum &lt;- vector()
+for (j in 1:length(levelList_noNA)) {
+    part &lt;- subset(act_noNA, act_noNA$date == levelList_noNA[j])
+    partSteps &lt;- part$steps
+    partSteps_df &lt;- as.data.frame(partSteps)
+    steps_eachday_noNA_sum[j] &lt;- apply(partSteps_df, 2, sum)
+}
+
+
+barplot(steps_eachday_noNA_sum, names.arg = levelList_noNA, xlab = &quot;date&quot;, ylab = &quot;sum of steps in each day&quot;, 
+    main = &quot;sum of steps in each day&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-2"/> </p>
+
+<p>#2-2. Calculate and report the mean and median total number of steps taken per day</p>
+
+<pre><code class="r">
+steps_eachday_noNA_mean &lt;- vector()
+steps_eachday_noNA_median &lt;- vector()
+for (j in 1:length(levelList_noNA)) {
+    part &lt;- subset(act_noNA, act_noNA$date == levelList_noNA[j])
+    partSteps &lt;- part$steps
+    partSteps_df &lt;- as.data.frame(partSteps)
+    steps_eachday_noNA_mean[j] &lt;- apply(partSteps_df, 2, mean)
+    steps_eachday_noNA_median[j] &lt;- apply(partSteps_df, 2, median)
+}
+
+
+# integrate the results into one dataframe
+mean_median_df &lt;- cbind(steps_eachday_noNA_mean, steps_eachday_noNA_median)
+colnames(mean_median_df) &lt;- c(&quot;mean of steps in each day&quot;, &quot;median of steps in each day&quot;)
+
+mean_median_df
+</code></pre>
+
+<pre><code>##       mean of steps in each day median of steps in each day
+##  [1,]                       NaN                          NA
+##  [2,]                    0.4375                           0
+##  [3,]                   39.4167                           0
+##  [4,]                   42.0694                           0
+##  [5,]                   46.1597                           0
+##  [6,]                   53.5417                           0
+##  [7,]                   38.2465                           0
+##  [8,]                       NaN                          NA
+##  [9,]                   44.4826                           0
+## [10,]                   34.3750                           0
+## [11,]                   35.7778                           0
+## [12,]                   60.3542                           0
+## [13,]                   43.1458                           0
+## [14,]                   52.4236                           0
+## [15,]                   35.2049                           0
+## [16,]                   52.3750                           0
+## [17,]                   46.7083                           0
+## [18,]                   34.9167                           0
+## [19,]                   41.0729                           0
+## [20,]                   36.0938                           0
+## [21,]                   30.6285                           0
+## [22,]                   46.7361                           0
+## [23,]                   30.9653                           0
+## [24,]                   29.0104                           0
+## [25,]                    8.6528                           0
+## [26,]                   23.5347                           0
+## [27,]                   35.1354                           0
+## [28,]                   39.7847                           0
+## [29,]                   17.4236                           0
+## [30,]                   34.0938                           0
+## [31,]                   53.5208                           0
+## [32,]                       NaN                          NA
+## [33,]                   36.8056                           0
+## [34,]                   36.7049                           0
+## [35,]                       NaN                          NA
+## [36,]                   36.2465                           0
+## [37,]                   28.9375                           0
+## [38,]                   44.7326                           0
+## [39,]                   11.1771                           0
+## [40,]                       NaN                          NA
+## [41,]                       NaN                          NA
+## [42,]                   43.7778                           0
+## [43,]                   37.3785                           0
+## [44,]                   25.4722                           0
+## [45,]                       NaN                          NA
+## [46,]                    0.1424                           0
+## [47,]                   18.8924                           0
+## [48,]                   49.7882                           0
+## [49,]                   52.4653                           0
+## [50,]                   30.6979                           0
+## [51,]                   15.5278                           0
+## [52,]                   44.3993                           0
+## [53,]                   70.9271                           0
+## [54,]                   73.5903                           0
+## [55,]                   50.2708                           0
+## [56,]                   41.0903                           0
+## [57,]                   38.7569                           0
+## [58,]                   47.3819                           0
+## [59,]                   35.3576                           0
+## [60,]                   24.4688                           0
+## [61,]                       NaN                          NA
+</code></pre>
+
+<p>##3 What is the average daily activity pattern?
+#3-1. Make a time series plot (i.e. type = &ldquo;l&rdquo; ) of the 5minute interval (xaxis) and the average number of steps taken, averaged across all days (yaxis)</p>
+
+<pre><code class="r"># make interval data
+intervals &lt;- vector()
+for (k in 0:471) {
+    intervals[k + 1] &lt;- 5 * k
+}
+
+# calculate mean of steps in each interval value.
+steps_eachInterval_mean &lt;- vector()
+for (k in 0:471) {
+    partInt &lt;- subset(act_noNA, act_noNA$interval == k * 5)
+    partIntSteps &lt;- as.data.frame(partInt$steps)
+    partIntSteps &lt;- as.data.frame(partIntSteps[complete.cases(partIntSteps), 
+        ])
+    partIntSteps
+    steps_eachInterval_mean[k + 1] &lt;- apply(partIntSteps, 2, mean)
+}
+
+# making the dataframe to report the mean of steps in each interval
+steps_eachInterval_mean &lt;- cbind(intervals, steps_eachInterval_mean)
+colnames(steps_eachInterval_mean) &lt;- c(&quot;intervals&quot;, &quot;mean of steps in each interval&quot;)
+steps_eachInterval_mean
+</code></pre>
+
+<pre><code>##        intervals mean of steps in each interval
+##   [1,]         0                        1.71698
+##   [2,]         5                        0.33962
+##   [3,]        10                        0.13208
+##   [4,]        15                        0.15094
+##   [5,]        20                        0.07547
+##   [6,]        25                        2.09434
+##   [7,]        30                        0.52830
+##   [8,]        35                        0.86792
+##   [9,]        40                        0.00000
+##  [10,]        45                        1.47170
+##  [11,]        50                        0.30189
+##  [12,]        55                        0.13208
+##  [13,]        60                            NaN
+##  [14,]        65                            NaN
+##  [15,]        70                            NaN
+##  [16,]        75                            NaN
+##  [17,]        80                            NaN
+##  [18,]        85                            NaN
+##  [19,]        90                            NaN
+##  [20,]        95                            NaN
+##  [21,]       100                        0.32075
+##  [22,]       105                        0.67925
+##  [23,]       110                        0.15094
+##  [24,]       115                        0.33962
+##  [25,]       120                        0.00000
+##  [26,]       125                        1.11321
+##  [27,]       130                        1.83019
+##  [28,]       135                        0.16981
+##  [29,]       140                        0.16981
+##  [30,]       145                        0.37736
+##  [31,]       150                        0.26415
+##  [32,]       155                        0.00000
+##  [33,]       160                            NaN
+##  [34,]       165                            NaN
+##  [35,]       170                            NaN
+##  [36,]       175                            NaN
+##  [37,]       180                            NaN
+##  [38,]       185                            NaN
+##  [39,]       190                            NaN
+##  [40,]       195                            NaN
+##  [41,]       200                        0.00000
+##  [42,]       205                        0.00000
+##  [43,]       210                        1.13208
+##  [44,]       215                        0.00000
+##  [45,]       220                        0.00000
+##  [46,]       225                        0.13208
+##  [47,]       230                        0.00000
+##  [48,]       235                        0.22642
+##  [49,]       240                        0.00000
+##  [50,]       245                        0.00000
+##  [51,]       250                        1.54717
+##  [52,]       255                        0.94340
+##  [53,]       260                            NaN
+##  [54,]       265                            NaN
+##  [55,]       270                            NaN
+##  [56,]       275                            NaN
+##  [57,]       280                            NaN
+##  [58,]       285                            NaN
+##  [59,]       290                            NaN
+##  [60,]       295                            NaN
+##  [61,]       300                        0.00000
+##  [62,]       305                        0.00000
+##  [63,]       310                        0.00000
+##  [64,]       315                        0.00000
+##  [65,]       320                        0.20755
+##  [66,]       325                        0.62264
+##  [67,]       330                        1.62264
+##  [68,]       335                        0.58491
+##  [69,]       340                        0.49057
+##  [70,]       345                        0.07547
+##  [71,]       350                        0.00000
+##  [72,]       355                        0.00000
+##  [73,]       360                            NaN
+##  [74,]       365                            NaN
+##  [75,]       370                            NaN
+##  [76,]       375                            NaN
+##  [77,]       380                            NaN
+##  [78,]       385                            NaN
+##  [79,]       390                            NaN
+##  [80,]       395                            NaN
+##  [81,]       400                        1.18868
+##  [82,]       405                        0.94340
+##  [83,]       410                        2.56604
+##  [84,]       415                        0.00000
+##  [85,]       420                        0.33962
+##  [86,]       425                        0.35849
+##  [87,]       430                        4.11321
+##  [88,]       435                        0.66038
+##  [89,]       440                        3.49057
+##  [90,]       445                        0.83019
+##  [91,]       450                        3.11321
+##  [92,]       455                        1.11321
+##  [93,]       460                            NaN
+##  [94,]       465                            NaN
+##  [95,]       470                            NaN
+##  [96,]       475                            NaN
+##  [97,]       480                            NaN
+##  [98,]       485                            NaN
+##  [99,]       490                            NaN
+## [100,]       495                            NaN
+## [101,]       500                        0.00000
+## [102,]       505                        1.56604
+## [103,]       510                        3.00000
+## [104,]       515                        2.24528
+## [105,]       520                        3.32075
+## [106,]       525                        2.96226
+## [107,]       530                        2.09434
+## [108,]       535                        6.05660
+## [109,]       540                       16.01887
+## [110,]       545                       18.33962
+## [111,]       550                       39.45283
+## [112,]       555                       44.49057
+## [113,]       560                            NaN
+## [114,]       565                            NaN
+## [115,]       570                            NaN
+## [116,]       575                            NaN
+## [117,]       580                            NaN
+## [118,]       585                            NaN
+## [119,]       590                            NaN
+## [120,]       595                            NaN
+## [121,]       600                       31.49057
+## [122,]       605                       49.26415
+## [123,]       610                       53.77358
+## [124,]       615                       63.45283
+## [125,]       620                       49.96226
+## [126,]       625                       47.07547
+## [127,]       630                       52.15094
+## [128,]       635                       39.33962
+## [129,]       640                       44.01887
+## [130,]       645                       44.16981
+## [131,]       650                       37.35849
+## [132,]       655                       49.03774
+## [133,]       660                            NaN
+## [134,]       665                            NaN
+## [135,]       670                            NaN
+## [136,]       675                            NaN
+## [137,]       680                            NaN
+## [138,]       685                            NaN
+## [139,]       690                            NaN
+## [140,]       695                            NaN
+## [141,]       700                       43.81132
+## [142,]       705                       44.37736
+## [143,]       710                       50.50943
+## [144,]       715                       54.50943
+## [145,]       720                       49.92453
+## [146,]       725                       50.98113
+## [147,]       730                       55.67925
+## [148,]       735                       44.32075
+## [149,]       740                       52.26415
+## [150,]       745                       69.54717
+## [151,]       750                       57.84906
+## [152,]       755                       56.15094
+## [153,]       760                            NaN
+## [154,]       765                            NaN
+## [155,]       770                            NaN
+## [156,]       775                            NaN
+## [157,]       780                            NaN
+## [158,]       785                            NaN
+## [159,]       790                            NaN
+## [160,]       795                            NaN
+## [161,]       800                       73.37736
+## [162,]       805                       68.20755
+## [163,]       810                      129.43396
+## [164,]       815                      157.52830
+## [165,]       820                      171.15094
+## [166,]       825                      155.39623
+## [167,]       830                      177.30189
+## [168,]       835                      206.16981
+## [169,]       840                      195.92453
+## [170,]       845                      179.56604
+## [171,]       850                      183.39623
+## [172,]       855                      167.01887
+## [173,]       860                            NaN
+## [174,]       865                            NaN
+## [175,]       870                            NaN
+## [176,]       875                            NaN
+## [177,]       880                            NaN
+## [178,]       885                            NaN
+## [179,]       890                            NaN
+## [180,]       895                            NaN
+## [181,]       900                      143.45283
+## [182,]       905                      124.03774
+## [183,]       910                      109.11321
+## [184,]       915                      108.11321
+## [185,]       920                      103.71698
+## [186,]       925                       95.96226
+## [187,]       930                       66.20755
+## [188,]       935                       45.22642
+## [189,]       940                       24.79245
+## [190,]       945                       38.75472
+## [191,]       950                       34.98113
+## [192,]       955                       21.05660
+## [193,]       960                            NaN
+## [194,]       965                            NaN
+## [195,]       970                            NaN
+## [196,]       975                            NaN
+## [197,]       980                            NaN
+## [198,]       985                            NaN
+## [199,]       990                            NaN
+## [200,]       995                            NaN
+## [201,]      1000                       40.56604
+## [202,]      1005                       26.98113
+## [203,]      1010                       42.41509
+## [204,]      1015                       52.66038
+## [205,]      1020                       38.92453
+## [206,]      1025                       50.79245
+## [207,]      1030                       44.28302
+## [208,]      1035                       37.41509
+## [209,]      1040                       34.69811
+## [210,]      1045                       28.33962
+## [211,]      1050                       25.09434
+## [212,]      1055                       31.94340
+## [213,]      1060                            NaN
+## [214,]      1065                            NaN
+## [215,]      1070                            NaN
+## [216,]      1075                            NaN
+## [217,]      1080                            NaN
+## [218,]      1085                            NaN
+## [219,]      1090                            NaN
+## [220,]      1095                            NaN
+## [221,]      1100                       31.35849
+## [222,]      1105                       29.67925
+## [223,]      1110                       21.32075
+## [224,]      1115                       25.54717
+## [225,]      1120                       28.37736
+## [226,]      1125                       26.47170
+## [227,]      1130                       33.43396
+## [228,]      1135                       49.98113
+## [229,]      1140                       42.03774
+## [230,]      1145                       44.60377
+## [231,]      1150                       46.03774
+## [232,]      1155                       59.18868
+## [233,]      1160                            NaN
+## [234,]      1165                            NaN
+## [235,]      1170                            NaN
+## [236,]      1175                            NaN
+## [237,]      1180                            NaN
+## [238,]      1185                            NaN
+## [239,]      1190                            NaN
+## [240,]      1195                            NaN
+## [241,]      1200                       63.86792
+## [242,]      1205                       87.69811
+## [243,]      1210                       94.84906
+## [244,]      1215                       92.77358
+## [245,]      1220                       63.39623
+## [246,]      1225                       50.16981
+## [247,]      1230                       54.47170
+## [248,]      1235                       32.41509
+## [249,]      1240                       26.52830
+## [250,]      1245                       37.73585
+## [251,]      1250                       45.05660
+## [252,]      1255                       67.28302
+## [253,]      1260                            NaN
+## [254,]      1265                            NaN
+## [255,]      1270                            NaN
+## [256,]      1275                            NaN
+## [257,]      1280                            NaN
+## [258,]      1285                            NaN
+## [259,]      1290                            NaN
+## [260,]      1295                            NaN
+## [261,]      1300                       42.33962
+## [262,]      1305                       39.88679
+## [263,]      1310                       43.26415
+## [264,]      1315                       40.98113
+## [265,]      1320                       46.24528
+## [266,]      1325                       56.43396
+## [267,]      1330                       42.75472
+## [268,]      1335                       25.13208
+## [269,]      1340                       39.96226
+## [270,]      1345                       53.54717
+## [271,]      1350                       47.32075
+## [272,]      1355                       60.81132
+## [273,]      1360                            NaN
+## [274,]      1365                            NaN
+## [275,]      1370                            NaN
+## [276,]      1375                            NaN
+## [277,]      1380                            NaN
+## [278,]      1385                            NaN
+## [279,]      1390                            NaN
+## [280,]      1395                            NaN
+## [281,]      1400                       55.75472
+## [282,]      1405                       51.96226
+## [283,]      1410                       43.58491
+## [284,]      1415                       48.69811
+## [285,]      1420                       35.47170
+## [286,]      1425                       37.54717
+## [287,]      1430                       41.84906
+## [288,]      1435                       27.50943
+## [289,]      1440                       17.11321
+## [290,]      1445                       26.07547
+## [291,]      1450                       43.62264
+## [292,]      1455                       43.77358
+## [293,]      1460                            NaN
+## [294,]      1465                            NaN
+## [295,]      1470                            NaN
+## [296,]      1475                            NaN
+## [297,]      1480                            NaN
+## [298,]      1485                            NaN
+## [299,]      1490                            NaN
+## [300,]      1495                            NaN
+## [301,]      1500                       30.01887
+## [302,]      1505                       36.07547
+## [303,]      1510                       35.49057
+## [304,]      1515                       38.84906
+## [305,]      1520                       45.96226
+## [306,]      1525                       47.75472
+## [307,]      1530                       48.13208
+## [308,]      1535                       65.32075
+## [309,]      1540                       82.90566
+## [310,]      1545                       98.66038
+## [311,]      1550                      102.11321
+## [312,]      1555                       83.96226
+## [313,]      1560                            NaN
+## [314,]      1565                            NaN
+## [315,]      1570                            NaN
+## [316,]      1575                            NaN
+## [317,]      1580                            NaN
+## [318,]      1585                            NaN
+## [319,]      1590                            NaN
+## [320,]      1595                            NaN
+## [321,]      1600                       62.13208
+## [322,]      1605                       64.13208
+## [323,]      1610                       74.54717
+## [324,]      1615                       63.16981
+## [325,]      1620                       56.90566
+## [326,]      1625                       59.77358
+## [327,]      1630                       43.86792
+## [328,]      1635                       38.56604
+## [329,]      1640                       44.66038
+## [330,]      1645                       45.45283
+## [331,]      1650                       46.20755
+## [332,]      1655                       43.67925
+## [333,]      1660                            NaN
+## [334,]      1665                            NaN
+## [335,]      1670                            NaN
+## [336,]      1675                            NaN
+## [337,]      1680                            NaN
+## [338,]      1685                            NaN
+## [339,]      1690                            NaN
+## [340,]      1695                            NaN
+## [341,]      1700                       46.62264
+## [342,]      1705                       56.30189
+## [343,]      1710                       50.71698
+## [344,]      1715                       61.22642
+## [345,]      1720                       72.71698
+## [346,]      1725                       78.94340
+## [347,]      1730                       68.94340
+## [348,]      1735                       59.66038
+## [349,]      1740                       75.09434
+## [350,]      1745                       56.50943
+## [351,]      1750                       34.77358
+## [352,]      1755                       37.45283
+## [353,]      1760                            NaN
+## [354,]      1765                            NaN
+## [355,]      1770                            NaN
+## [356,]      1775                            NaN
+## [357,]      1780                            NaN
+## [358,]      1785                            NaN
+## [359,]      1790                            NaN
+## [360,]      1795                            NaN
+## [361,]      1800                       40.67925
+## [362,]      1805                       58.01887
+## [363,]      1810                       74.69811
+## [364,]      1815                       85.32075
+## [365,]      1820                       59.26415
+## [366,]      1825                       67.77358
+## [367,]      1830                       77.69811
+## [368,]      1835                       74.24528
+## [369,]      1840                       85.33962
+## [370,]      1845                       99.45283
+## [371,]      1850                       86.58491
+## [372,]      1855                       85.60377
+## [373,]      1860                            NaN
+## [374,]      1865                            NaN
+## [375,]      1870                            NaN
+## [376,]      1875                            NaN
+## [377,]      1880                            NaN
+## [378,]      1885                            NaN
+## [379,]      1890                            NaN
+## [380,]      1895                            NaN
+## [381,]      1900                       84.86792
+## [382,]      1905                       77.83019
+## [383,]      1910                       58.03774
+## [384,]      1915                       53.35849
+## [385,]      1920                       36.32075
+## [386,]      1925                       20.71698
+## [387,]      1930                       27.39623
+## [388,]      1935                       40.01887
+## [389,]      1940                       30.20755
+## [390,]      1945                       25.54717
+## [391,]      1950                       45.66038
+## [392,]      1955                       33.52830
+## [393,]      1960                            NaN
+## [394,]      1965                            NaN
+## [395,]      1970                            NaN
+## [396,]      1975                            NaN
+## [397,]      1980                            NaN
+## [398,]      1985                            NaN
+## [399,]      1990                            NaN
+## [400,]      1995                            NaN
+## [401,]      2000                       19.62264
+## [402,]      2005                       19.01887
+## [403,]      2010                       19.33962
+## [404,]      2015                       33.33962
+## [405,]      2020                       26.81132
+## [406,]      2025                       21.16981
+## [407,]      2030                       27.30189
+## [408,]      2035                       21.33962
+## [409,]      2040                       19.54717
+## [410,]      2045                       21.32075
+## [411,]      2050                       32.30189
+## [412,]      2055                       20.15094
+## [413,]      2060                            NaN
+## [414,]      2065                            NaN
+## [415,]      2070                            NaN
+## [416,]      2075                            NaN
+## [417,]      2080                            NaN
+## [418,]      2085                            NaN
+## [419,]      2090                            NaN
+## [420,]      2095                            NaN
+## [421,]      2100                       15.94340
+## [422,]      2105                       17.22642
+## [423,]      2110                       23.45283
+## [424,]      2115                       19.24528
+## [425,]      2120                       12.45283
+## [426,]      2125                        8.01887
+## [427,]      2130                       14.66038
+## [428,]      2135                       16.30189
+## [429,]      2140                        8.67925
+## [430,]      2145                        7.79245
+## [431,]      2150                        8.13208
+## [432,]      2155                        2.62264
+## [433,]      2160                            NaN
+## [434,]      2165                            NaN
+## [435,]      2170                            NaN
+## [436,]      2175                            NaN
+## [437,]      2180                            NaN
+## [438,]      2185                            NaN
+## [439,]      2190                            NaN
+## [440,]      2195                            NaN
+## [441,]      2200                        1.45283
+## [442,]      2205                        3.67925
+## [443,]      2210                        4.81132
+## [444,]      2215                        8.50943
+## [445,]      2220                        7.07547
+## [446,]      2225                        8.69811
+## [447,]      2230                        9.75472
+## [448,]      2235                        2.20755
+## [449,]      2240                        0.32075
+## [450,]      2245                        0.11321
+## [451,]      2250                        1.60377
+## [452,]      2255                        4.60377
+## [453,]      2260                            NaN
+## [454,]      2265                            NaN
+## [455,]      2270                            NaN
+## [456,]      2275                            NaN
+## [457,]      2280                            NaN
+## [458,]      2285                            NaN
+## [459,]      2290                            NaN
+## [460,]      2295                            NaN
+## [461,]      2300                        3.30189
+## [462,]      2305                        2.84906
+## [463,]      2310                        0.00000
+## [464,]      2315                        0.83019
+## [465,]      2320                        0.96226
+## [466,]      2325                        1.58491
+## [467,]      2330                        2.60377
+## [468,]      2335                        4.69811
+## [469,]      2340                        3.30189
+## [470,]      2345                        0.64151
+## [471,]      2350                        0.22642
+## [472,]      2355                        1.07547
+</code></pre>
+
+<pre><code class="r">
+# make time series plot
+plot(steps_eachInterval_mean[, 2] ~ steps_eachInterval_mean[, 1], type = &quot;l&quot;, 
+    xlab = &quot;5minute interval&quot;, ylab = &quot;averaged steps in each interval&quot;, main = &quot;time seriese plot of \n averaged steps in each interval&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<p>#3-2  Which 5minute interval, on average across all the days in the dataset, contains the maximum number of steps?</p>
+
+<p>my answer: According to the calculation below, when the interval is 835, the mean of the steps in each interval is maximized.</p>
+
+<pre><code class="r"># get the value of max of the mean of the steps in each interval
+maxSteps &lt;- max(steps_eachInterval_mean[, 2], na.rm = TRUE)
+# get the value of intervals which has maxSteps
+maxdata &lt;- subset(steps_eachInterval_mean, steps_eachInterval_mean[, 2] == maxSteps)
+maxdata
+</code></pre>
+
+<pre><code>##      intervals mean of steps in each interval
+## [1,]       835                          206.2
+</code></pre>
+
+<p>##4 Imputing missing values
+#4-1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NA)</p>
+
+<p>my answer :
+According to the calculation below, the number of NAs in this dataset was 2304.</p>
+
+<pre><code class="r">NAnum &lt;- sum(is.na(act))
+NAnum
+</code></pre>
+
+<pre><code>## [1] 2304
+</code></pre>
+
+<p>#4-2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5minute interval, etc.</p>
+
+<p>my answer:
+We fill NAs in this dataset with mean steps in each interval.</p>
+
+<p>#4-3.Create a new dataset that is equal to the original dataset but with the missing data filled in.</p>
+
+</body>
+
+</html>
+
